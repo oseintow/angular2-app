@@ -26,13 +26,14 @@ export class AppLevelRouterOutlet extends RouterOutlet{
     // publicRoutes will be the routes auth is not needed for.
   }
 
-  activate(instruction: ComponentInstruction) {
+  activate(instruction: ComponentInstruction): Promise<any> {
     console.log("testing");
     var url = this.parentRouter.lastNavigationAttempt;
-    console.log(instruction.componentType);
+    console.log(url);
+    console.log(instruction);
     
 
-    this.parentRouter.navigate(['Posts','Post',{id:3}]);
+    // this.parentRouter.navigate(['Posts','Post',{id:3}]);
     // this.parentRouter.navigateByUrl('/posts/2');
     // if (!this.publicRoutes[url] && this._userService.getAuth()) {
     //   // todo: redirect to Login, may be there a better way?
@@ -41,6 +42,12 @@ export class AppLevelRouterOutlet extends RouterOutlet{
     
     return super.activate(instruction);
     // we return super.activate(instruction) here so the router can activate the requested route and it's components.
+  }
+  
+  deactivate(nextInstruction: ComponentInstruction): Promise<any> {
+      console.log("last");
+      console.log(nextInstruction);
+      return super.deactivate(nextInstruction);
   }
     
 }

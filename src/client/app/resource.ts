@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Http,Headers, RequestOptions} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
@@ -7,12 +7,21 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class Resource{
 
-    private _baseUrl = "";
+    protected baseUrl: string;
+    protected headers: Headers = new Headers({'Content-Type': 'application/json'});
+    protected options: RequestOptions;
 
     constructor(private _http: Http){}
     
+    connect(notify = true, message="", args?){
+        this.headers.append('notify', notify.toString());
+        this.headers.append('message', message);
+        this.options = new RequestOptions({headers: this.headers});
+        return this;
+    }
+    
     query(url: string, params: JSON, args?: JSON){
-        this._baseUrl = url;
+        this.baseUrl = url;
     }
     
     // (id: number){
