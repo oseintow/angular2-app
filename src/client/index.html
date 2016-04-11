@@ -6,6 +6,9 @@
   <base href="/">
   {{content-for 'head'}}
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/styles/ng2-select.css">
   
   <!-- Service worker support is disabled by default.
        Install the worker script and uncomment to enable.
@@ -29,8 +32,12 @@
   <script src="vendor/rxjs/bundles/Rx.js"></script>
 
   <script src="vendor/angular2/bundles/angular2.dev.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.14/angular2.js"></script>-->
   <script src="vendor/angular2/bundles/http.dev.js"></script>
   <script src="vendor/angular2/bundles/router.dev.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.14/router.js"></script>-->
+  <!--<script src="../node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ng2-bootstrap/1.0.11/ng2-bootstrap.min.js"></script>
 
   <script>
     System.config({
@@ -39,7 +46,10 @@
           format: 'register',
           defaultExtension: 'js'
         }
-      }
+      },
+      map: {
+        moment: 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js'
+     }
     });
     System.import('app.js').then(null, console.error.bind(console));
   </script>

@@ -1,0 +1,15 @@
+<h2>Posts</h2>
+<alert type="info">ng2-bootstrap hello world!</alert>
+
+<div class="col-sm-6">
+    <select #u class="form-control input-sm" (change)="reloadPosts({userId: u.value})">
+        <option value="" selected="selected">-- select user --</option>
+        <option *ngFor="#user of users" [attr.value]="user.id">{{user.name}}</option>
+    </select>
+    <spinner [visible]="postLoading"></spinner>
+    <ul class="list-group posts">
+        <li *ngFor="#post of posts" class="list-group-item" (click)="select(post)">{{post.title}}</li>
+    </ul>
+</div>
+
+<router-outlet></router-outlet>

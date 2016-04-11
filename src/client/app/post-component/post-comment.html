@@ -1,0 +1,14 @@
+<div>
+  <spinner [visible]="postCommentLoading"></spinner>
+  <div class="media" *ngFor="#postComment of postComments">
+    <div class="media-left">
+        <a href="#">
+            <img class="media-object thumbnail" src="http://lorempixel.com/80/80/people?random={{ postComment.id }}" alt="images">
+        </a>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading">{{postComment.name}}</h4>
+        {{postComment.body}}
+    </div>
+  </div>
+</div>

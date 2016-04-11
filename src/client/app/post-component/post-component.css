@@ -1,0 +1,11 @@
+.posts > li{
+    cursor: pointer;
+}
+
+.thumbnail {
+    border-radius: 100%;
+}
+
+.posts li:hover { 
+    background: #ecf0f1; 
+} 

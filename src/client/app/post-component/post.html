@@ -1,0 +1,13 @@
+<div class="col-sm-6" *ngIf="isCurrent">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{post.title}}</h3>
+    </div>
+    <div class="panel-body">
+        <spinner [visible]="postLoading"></spinner>
+        {{post.body}}
+        <hr>
+        <post-comment [postId]="postId"></post-comment>
+    </div>
+    </div>
+</div>
