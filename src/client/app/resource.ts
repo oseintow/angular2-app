@@ -58,7 +58,7 @@ export class Resource{
             .map(res => res.json());
     }
     
-    private formatUrl(): void{
+    private formatUrl(method? : string): void{
         this.baseUrl = this.url;
         let protocol: string = "";
         let url: string  = "";
@@ -70,27 +70,33 @@ export class Resource{
             protocol = this.baseUrl.substr(0,7);
             url = this.baseUrl.substr(7, this.baseUrl.length);
         }
-        
+       
+       let lastUrlChar = url.slice(-1);
+        url = (lastUrlChar == "/") ? url.slice(0, -1) : url;
         uri = url.split("/");
         
-        uri.forEach((element,index) => {
+        uri.forEach((element,key) => {
             if(element.indexOf(":") > -1){
-                let key = element.substr(1,element.length);
-                if(this.params.hasOwnProperty(key)){
-                    console.log("key is found");
-                    console.log("am here");
-                    uri[index] = this.params[key];
+                let elementKey = element.substr(1,element.length);
+                if(this.params.hasOwnProperty(elementKey)){
+                    uri[key] = this.params[elementKey];
+                    delete this.params[elementKey];
+                }else if(key == uri.length-1){
+                    uri.pop();
+                }else{
+                    uri[key] = undefined;
                 }
             }
         });
         
         this.baseUrl = protocol;
-        
-        uri.forEach(element => {
-            this.baseUrl += element + "/"
+        uri.forEach((element,key) => {
+            this.baseUrl += (key!==uri.length-1) ? element + "/" : element
         })
         
-       console.log(this.baseUrl);
+        this.baseUrl = (lastUrlChar == "/") ? this.baseUrl + lastUrlChar : this.baseUrl;
+        
+        console.log(this.baseUrl);
         
     }
    
