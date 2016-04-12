@@ -1,11 +1,12 @@
 import {Directive, Attribute, ElementRef, DynamicComponentLoader} from 'angular2/core';
 import {Router, RouterOutlet, ComponentInstruction} from 'angular2/router';
 import {UserService} from './users-component/user-service';
+import {TestingResource} from './testing-resource';
 
 
 @Directive({
     selector: 'router-outlet',  
-    providers: [UserService]
+    providers: [UserService, TestingResource]
 })
 export class AppLevelRouterOutlet extends RouterOutlet{
     
@@ -13,10 +14,13 @@ export class AppLevelRouterOutlet extends RouterOutlet{
   private parentRouter: Router;
 
   constructor(_elementRef: ElementRef, _loader: DynamicComponentLoader,
-              _parentRouter: Router, @Attribute('name') nameAttr: string, private _userService: UserService) {
+              _parentRouter: Router, @Attribute('name') nameAttr: string, private _userService: UserService, private _testingResource: TestingResource) {
                   
     super(_elementRef, _loader, _parentRouter, nameAttr);
     console.log("i got here");
+    
+    this._testingResource.connect().get({id:2})
+        .subscribe(data => console.log(data));
     
     this.parentRouter = _parentRouter;
     this.publicRoutes = {
