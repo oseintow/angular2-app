@@ -6,7 +6,7 @@ import {PostComment} from './post-comment';
 import {UsersComponent} from '../users-component/users-component';
 import {Spinner} from '../spinner/spinner';
 import {UserService} from '../users-component/user-service';
-import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
+// import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
 import {AppLevelRouterOutlet as ROUTER_DIRECTIVES} from '../app-level-router-outlet';
 
 
@@ -15,7 +15,7 @@ import {AppLevelRouterOutlet as ROUTER_DIRECTIVES} from '../app-level-router-out
   templateUrl: 'app/post-component/post-component.html',
   styleUrls: ['app/post-component/post-component.css'],
   providers: [PostService, UserService],
-  directives: [ROUTER_DIRECTIVES, Spinner, Alert],
+  directives: [ROUTER_DIRECTIVES, Spinner],
   pipes: []
 })
 @RouteConfig([

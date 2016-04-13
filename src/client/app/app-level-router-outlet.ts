@@ -17,10 +17,9 @@ export class AppLevelRouterOutlet extends RouterOutlet{
               _parentRouter: Router, @Attribute('name') nameAttr: string, private _userService: UserService, private _testingResource: TestingResource) {
                   
     super(_elementRef, _loader, _parentRouter, nameAttr);
-    console.log("i got here");
     
     this._testingResource.connect().get({id:2})
-        .subscribe(data => console.log(data));
+        .subscribe(data => {},err=>console.log(err));
     
     this.parentRouter = _parentRouter;
     this.publicRoutes = {
@@ -31,11 +30,8 @@ export class AppLevelRouterOutlet extends RouterOutlet{
   }
 
   activate(instruction: ComponentInstruction): Promise<any> {
-    console.log("testing");
     var url = this.parentRouter.lastNavigationAttempt;
-    console.log(url);
-    console.log(instruction);
-    
+
 
     // this.parentRouter.navigate(['Posts','Post',{id:3}]);
     // this.parentRouter.navigateByUrl('/posts/2');
@@ -49,8 +45,6 @@ export class AppLevelRouterOutlet extends RouterOutlet{
   }
   
   deactivate(nextInstruction: ComponentInstruction): Promise<any> {
-      console.log("last");
-      console.log(nextInstruction);
       return super.deactivate(nextInstruction);
   }
     
